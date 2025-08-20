@@ -43,7 +43,6 @@ document.addEventListener('DOMContentLoaded', function() {
       },
     ];
 
-    // Sample data for saved trips (in a real app, this would come from an API)
     const savedTrips = [
       {
         id: 1,
@@ -90,7 +89,9 @@ document.addEventListener('DOMContentLoaded', function() {
                                 <span>${trip.hotel}</span>
                             </div>
                         </div>
-                        <button class="btn btn-primary btn-block">Book Now</button>
+                        <div class="trip-actions">
+                            <button class="btn btn-primary">Book Now</button>
+                        </div>
                     </div>
                 </div>
             `;

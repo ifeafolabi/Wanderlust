@@ -177,9 +177,11 @@ p {
 /* Trip Cards */
 .trip-cards {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
     gap: 1.5rem;
-    margin-top: 1.5rem;
+    margin: 1.5rem 0;
+    padding: 0;
+    width: 100%;
 }
 
 .trip-card {
@@ -192,6 +194,8 @@ p {
     display: flex;
     flex-direction: column;
     border: 1px solid var(--border-color);
+    margin: 0;
+    width: 100%;
 }
 
 .trip-card:hover {
@@ -200,12 +204,14 @@ p {
 }
 
 .trip-image {
-    height: 220px;
+    height: 200px;
     background-size: cover;
     background-position: center;
     position: relative;
     background-color: #f3f4f6;
     transition: transform 0.3s ease;
+    width: 100%;
+    flex-shrink: 0;
 }
 
 .trip-card:hover .trip-image {
@@ -265,6 +271,8 @@ p {
     display: flex;
     flex-direction: column;
     gap: 0.75rem;
+    width: 100%;
+    box-sizing: border-box;
 }
 
 .trip-header {
@@ -378,6 +386,12 @@ p {
 }
 
 /* Responsive Design */
+@media (max-width: 1200px) {
+    .trip-cards {
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    }
+}
+
 @media (max-width: 1024px) {
     .trip-cards {
         grid-template-columns: repeat(2, 1fr);

@@ -310,10 +310,12 @@
 
           <!-- Billing Section -->
           <div class="settings-section" id="billing-section">
-            <h1>Billing History</h1>
-            <p class="section-description">
-              View and manage your billing history
-            </p>
+            <div class="billing-header">
+              <h1>Billing History</h1>
+              <p class="section-description">
+                View and manage your transaction history, download receipts, and track your spending.
+              </p>
+            </div>
 
             <div class="billing-filters">
               <div class="filter-group">
@@ -332,33 +334,73 @@
             </div>
 
             <div class="billing-history">
+              <!-- Transaction Item 1 -->
               <div class="billing-item">
-                <div>
+                <div class="billing-item-details">
                   <h4>Premium Membership</h4>
-                  <p>Monthly Subscription</p>
+                  <p><i class="far fa-calendar-alt"></i> Monthly Subscription</p>
                 </div>
                 <div class="billing-amount">
                   <span class="amount">$9.99</span>
                   <span class="date">Jul 15, 2023</span>
                 </div>
-                <button class="btn btn-text">
-                  <i class="fas fa-download"></i>
-                </button>
+                <div class="billing-actions">
+                  <button class="btn" title="Download receipt">
+                    <i class="fas fa-download"></i>
+                  </button>
+                  <button class="btn" title="View details">
+                    <i class="fas fa-ellipsis-v"></i>
+                  </button>
+                </div>
               </div>
 
+              <!-- Transaction Item 2 -->
               <div class="billing-item">
-                <div>
+                <div class="billing-item-details">
                   <h4>Paris Vacation Package</h4>
-                  <p>Hotel & Flight Booking</p>
+                  <p><i class="fas fa-hotel"></i> Hotel & Flight Booking</p>
                 </div>
                 <div class="billing-amount">
                   <span class="amount">$1,299.00</span>
                   <span class="date">Jun 28, 2023</span>
                 </div>
-                <button class="btn btn-text">
-                  <i class="fas fa-download"></i>
-                </button>
+                <div class="billing-actions">
+                  <button class="btn" title="Download receipt">
+                    <i class="fas fa-download"></i>
+                  </button>
+                  <button class="btn" title="View details">
+                    <i class="fas fa-ellipsis-v"></i>
+                  </button>
+                </div>
               </div>
+
+              <!-- Transaction Item 3 -->
+              <div class="billing-item">
+                <div class="billing-item-details">
+                  <h4>Travel Insurance</h4>
+                  <p><i class="fas fa-shield-alt"></i> Annual Coverage</p>
+                </div>
+                <div class="billing-amount">
+                  <span class="amount">$149.99</span>
+                  <span class="date">May 15, 2023</span>
+                </div>
+                <div class="billing-actions">
+                  <button class="btn" title="Download receipt">
+                    <i class="fas fa-download"></i>
+                  </button>
+                  <button class="btn" title="View details">
+                    <i class="fas fa-ellipsis-v"></i>
+                  </button>
+                </div>
+              </div>
+
+              <!-- Empty State (hidden by default) -->
+              <!-- <div class="billing-empty">
+                <i class="far fa-file-alt"></i>
+                <h3>No transactions yet</h3>
+                <p>Your transaction history will appear here when you make a booking or subscription.</p>
+                <button class="btn btn-primary">Explore Destinations</button>
+              </div> -->
             </div>
           </div>
 
@@ -458,7 +500,8 @@
     </main>
 
     <!-- Payment Method Modal -->
-    <div class="modal-overlay" id="paymentModal" style="display: none;">
+    <div class="modal" id="paymentModal">
+      <div class="modal-overlay"></div>
       <div class="modal-container">
         <div class="modal-header">
           <h2>Add Payment Method</h2>
@@ -475,7 +518,6 @@
               <div class="card-icons">
                 <i class="fab fa-cc-visa"></i>
                 <i class="fab fa-cc-mastercard"></i>
-                <i class="fab fa-cc-amex"></i>
               </div>
             </div>
 
@@ -516,7 +558,6 @@
         </div>
       </div>
     </div>
-    <!-- End Payment Method Modal -->
 
     <script src="js/navigation.js"></script>
     <script>
@@ -557,7 +598,18 @@
         const openModalBtn = document.getElementById("addPaymentMethod");
         const closeModalBtns = document.querySelectorAll(".close-modal");
 
-        // Show first section by default
+        // Set up section switching
+        document.querySelectorAll(".nav-item").forEach((item) => {
+          item.addEventListener("click", function (e) {
+            e.preventDefault();
+            const section = this.getAttribute("data-section");
+            if (section) {
+              switchSection(section);
+            }
+          });
+        });
+
+        // Make sure only the first section is active by default
         const firstSection = document.querySelector(".settings-section");
         if (firstSection) {
           document
@@ -567,34 +619,33 @@
             });
         }
 
-        function openModal() {
-          modal.classList.add('active');
-          document.body.style.overflow = "hidden";
-        }
-
-        function closeModal() {
-          modal.classList.remove('active');
-          document.body.style.overflow = "auto";
-        }
-
         if (openModalBtn) {
-          openModalBtn.addEventListener("click", (e) => {
-            e.preventDefault();
-            openModal();
+          openModalBtn.addEventListener("click", () => {
+            modal.classList.add('show');
+            document.body.style.overflow = "hidden";
           });
         }
 
         closeModalBtns.forEach((btn) => {
-          btn.addEventListener("click", (e) => {
-            e.preventDefault();
-            closeModal();
+          btn.addEventListener("click", () => {
+            modal.classList.remove('show');
+            document.body.style.overflow = "auto";
           });
         });
 
-        // Close modal when clicking outside the modal content
+        // Close modal when clicking outside the modal content or pressing Escape key
         window.addEventListener("click", (e) => {
           if (e.target === modal) {
-            closeModal();
+            modal.classList.remove('show');
+            document.body.style.overflow = "auto";
+          }
+        });
+
+        // Close modal with Escape key
+        document.addEventListener('keydown', (e) => {
+          if (e.key === 'Escape' && modal.classList.contains('show')) {
+            modal.classList.remove('show');
+            document.body.style.overflow = "auto";
           }
         });
       });
