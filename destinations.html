@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Explore Destinations - Wanderlust Travels</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="css/shared.css" />
+    <link rel="stylesheet" href="css/navigation.css" />
+    <style>
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      background-color: #f8fafc;
+      color: #1e293b;
+      line-height: 1.5;
+      margin: 0;
+      padding: 0;
+    }
+    
+    .hero {
+      position: relative;
+      background: url('https://images.unsplash.com/photo-1469474968028-56623f02e42e?w=1920&auto=format&fit=crop&q=80');
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
+      background-repeat: no-repeat;
+      color: white;
+      padding: 10rem 0 8rem;
+      text-align: center;
+      overflow: hidden;
+      margin-top: -15px;
+    }
+    
+    .hero::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.3);
+      z-index: 1;
+    }
+    
+    .hero .container {
+      position: relative;
+      z-index: 2;
+    }
+    
+    .hero h1 {
+      font-size: 3rem;
+      margin-bottom: 1.5rem;
+      font-weight: 800;
+      line-height: 1.2;
+    }
+    
+    .hero p {
+      font-size: 1.25rem;
+      max-width: 600px;
+      margin: 0 auto 3rem;
+      opacity: 0.9;
+    }
+    
+    .hero-buttons {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .destinations-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 30px;
+      padding: 0 20px;
+      max-width: 1200px;
+      margin: 0 auto 60px;
+    }
+
+    .destination-card {
+      background: white;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s ease;
+    }
+
+    .destination-card:hover {
+      transform: translateY(-10px);
+    }
+
+    .destination-image {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+    }
+
+    .destination-info {
+      padding: 20px;
+    }
+
+    .destination-info h3 {
+      margin: 0 0 10px 0;
+      color: #1f2937;
+    }
+
+    .destination-info p {
+      color: #6b7280;
+      margin-bottom: 15px;
+    }
+
+    .btn-explore {
+      display: inline-block;
+      background-color: #4f46e5;
+      color: white;
+      padding: 8px 16px;
+      border-radius: 5px;
+      text-decoration: none;
+      transition: background-color 0.3s ease;
+    }
+
+    .btn-explore:hover {
+      background-color: #4338ca;
+    }
+
+    .search-bar {
+      max-width: 600px;
+      margin: 80px auto 40px;
+      position: relative;
+    }
+
+    .search-bar input {
+      width: 100%;
+      padding: 12px 20px 12px 45px;
+      border: 2px solid #e5e7eb;
+      border-radius: 25px;
+      font-size: 16px;
+      outline: none;
+      transition: all 0.3s ease;
+    }
+
+    .search-bar input:focus {
+      border-color: #4f46e5;
+    }
+    
+    .search-bar .fa-search {
+      position: absolute;
+      left: 15px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: #9ca3af;
+    }
+  </style>
+</head>
+<body>
+  <!-- Navigation will be injected by navigation.js -->
+  <nav class="navbar">
+    <div class="container"></div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="container">
+      <h1>Discover Amazing Destinations</h1>
+      <p>Find your perfect getaway from our curated selection of the world's most beautiful places</p>
+      <div class="hero-buttons">
+        <a href="#featured-destinations" class="btn btn-primary">Explore Now</a>
+        <a href="#popular-categories" class="btn btn-outline" style="background: rgba(255, 255, 255, 0.1); color: white; border-color: white;">View Categories</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Search Bar -->
+  <div class="search-bar">
+    <input type="text" id="searchInput" placeholder="Search destinations...">
+    <i class="fas fa-search"></i>
+  </div>
+
+  <!-- Destinations Grid -->
+  <div class="destinations-grid">
+    <!-- Destination 1 -->
+    <div class="destination-card">
+      <img src="https://plus.unsplash.com/premium_photo-1661956135713-f93a5a95904d?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTN8fHBhcmlzJTIwZnJhbmNlfGVufDB8fDB8fHww" alt="Paris, France" class="destination-image">
+      <div class="destination-info">
+        <h3>Paris, France</h3>
+        <p>The City of Light, known for its romantic atmosphere, iconic landmarks, and world-class cuisine.</p>
+        <a href="#" class="btn-explore">Explore</a>
+      </div>
+    </div>
+
+    <!-- Destination 2 -->
+    <div class="destination-card">
+      <img src="https://images.unsplash.com/photo-1503917988258-f87a78e3c995?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Kyoto, Japan" class="destination-image">
+      <div class="destination-info">
+        <h3>Kyoto, Japan</h3>
+        <p>Experience traditional Japanese culture, ancient temples, and stunning cherry blossoms.</p>
+        <a href="#" class="btn-explore">Explore</a>
+      </div>
+    </div>
+
+    <!-- Destination 3 -->
+    <div class="destination-card">
+      <img src="https://plus.unsplash.com/premium_photo-1661964149725-fbf14eabd38c?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8c2FudG9yaW5pJTIwZ3JlZWNlfGVufDB8fDB8fHww" alt="Santorini, Greece" class="destination-image">
+      <div class="destination-info">
+        <h3>Santorini, Greece</h3>
+        <p>Famous for its white-washed buildings, blue domes, and breathtaking sunsets over the Aegean Sea.</p>
+        <a href="#" class="btn-explore">Explore</a>
+      </div>
+    </div>
+
+    <!-- Destination 4 -->
+    <div class="destination-card">
+      <img src="https://images.unsplash.com/photo-1566073771259-6a8506099945?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Bali, Indonesia" class="destination-image">
+      <div class="destination-info">
+        <h3>Bali, Indonesia</h3>
+        <p>Tropical paradise with lush jungles, pristine beaches, and a rich cultural heritage.</p>
+        <a href="#" class="btn-explore">Explore</a>
+      </div>
+    </div>
+
+    <!-- Destination 5 -->
+    <div class="destination-card">
+      <img src="https://images.unsplash.com/photo-1485871981521-5b1fd3805eee?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8bmV3JTIweW9ya3xlbnwwfHwwfHx8MA%3D%3D" alt="New York City, USA" class="destination-image">
+      <div class="destination-info">
+        <h3>New York City, USA</h3>
+        <p>The city that never sleeps, offering world-famous attractions, dining, and entertainment.</p>
+        <a href="#" class="btn-explore">Explore</a>
+      </div>
+    </div>
+
+    <!-- Destination 6 -->
+    <div class="destination-card">
+      <img src="https://images.unsplash.com/photo-1523482580672-f109ba8cb9be?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Cape Town, South Africa" class="destination-image">
+      <div class="destination-info">
+        <h3>Cape Town, South Africa</h3>
+        <p>Stunning landscapes, diverse wildlife, and a vibrant cultural scene at the southern tip of Africa.</p>
+        <a href="#" class="btn-explore">Explore</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="auth.js"></script>
+  <script src="js/navigation.js"></script>
+  <script src="script.js"></script>
+  <script>
+    // Initialize navigation
+    document.addEventListener('DOMContentLoaded', function() {
+      // Search functionality
+      const searchInput = document.getElementById('searchInput');
+      const destinationCards = document.querySelectorAll('.destination-card');
+      
+      if (searchInput) {
+        searchInput.addEventListener('input', function() {
+          const searchTerm = this.value.toLowerCase();
+          
+          destinationCards.forEach(card => {
+            const destinationName = card.querySelector('h3').textContent.toLowerCase();
+            const destinationDesc = card.querySelector('p').textContent.toLowerCase();
+            
+            if (destinationName.includes(searchTerm) || destinationDesc.includes(searchTerm)) {
+              card.style.display = 'block';
+              card.style.animation = 'fadeIn 0.5s ease-in-out';
+            } else {
+              card.style.display = 'none';
+            }
+          });
+        });
+      }
+
+      // Add fadeIn animation
+      const style = document.createElement('style');
+      style.textContent = `
+        @keyframes fadeIn {
+          from { opacity: 0; transform: translateY(10px); }
+          to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .destination-card {
+          transition: all 0.3s ease;
+        }
+      `;
+      document.head.appendChild(style);
+    });
+  </script>
+</body>
+</html>

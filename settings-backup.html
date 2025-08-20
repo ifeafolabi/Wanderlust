@@ -1,0 +1,649 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Account Settings - Wanderlust</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <link rel="stylesheet" href="css/shared.css" />
+    <link rel="stylesheet" href="css/navigation.css" />
+    <link rel="stylesheet" href="css/settings.css" />
+  </head>
+  <body>
+    <header class="navbar">
+      <div class="container">
+        <!-- Navigation will be inserted here by navigation.js -->
+      </div>
+    </header>
+
+    <main class="container">
+      <div class="settings-container">
+        <!-- Sidebar Navigation -->
+        <div class="settings-sidebar">
+          <h2>Settings</h2>
+          <nav class="settings-nav">
+            <button class="nav-item active" data-target="account">
+              <i class="fas fa-user"></i>
+              <span>Account</span>
+            </button>
+            <button class="nav-item" data-target="notifications">
+              <i class="fas fa-bell"></i>
+              <span>Notifications</span>
+            </button>
+            <button class="nav-item" data-target="privacy">
+              <i class="fas fa-lock"></i>
+              <span>Privacy & Security</span>
+            </button>
+            <button class="nav-item" data-target="payment">
+              <i class="fas fa-credit-card"></i>
+              <span>Payment Methods</span>
+            </button>
+            <button class="nav-item" data-target="preferences">
+              <i class="fas fa-sliders-h"></i>
+              <span>Preferences</span>
+            </button>
+            <button class="nav-item" data-target="billing">
+              <i class="fas fa-file-invoice-dollar"></i>
+              <span>Billing</span>
+            </button>
+          </nav>
+        </div>
+        
+        <!-- Main Content Area -->
+        <div class="settings-content">
+          <!-- Account Section -->
+          <div class="settings-section active" id="account-section">
+            <!-- Account section content will be populated by JavaScript -->
+          </div>
+          
+          <!-- Notifications Section -->
+          <div class="settings-section" id="notifications-section">
+            <!-- Notifications section content will be populated by JavaScript -->
+          </div>
+          
+          <!-- Privacy Section -->
+          <div class="settings-section" id="privacy-section">
+            <!-- Privacy section content will be populated by JavaScript -->
+          </div>
+          
+          <!-- Payment Methods -->
+          <div class="settings-section" id="payment-section">
+            <div class="section-header">
+              <div>
+                <h1>Payment Methods</h1>
+                <p class="section-description">Manage your saved payment methods</p>
+              </div>
+              <button class="btn btn-primary" id="addPaymentMethod">
+                <i class="fas fa-plus"></i> Add Payment Method
+              </button>
+            </div>
+          <!-- Billing Section -->
+          <div class="settings-section" id="billing-section">
+            <h1>Billing History</h1>
+            <p class="section-description">View and manage your billing history</p>
+            
+            <div class="billing-filters">
+              <div class="filter-group">
+                <label>Filter by:</label>
+                <select class="form-select">
+                  <option>All Transactions</option>
+                  <option>This Month</option>
+                  <option>Last 3 Months</option>
+                  <option>This Year</option>
+                </select>
+              </div>
+              <div class="search-box">
+                <i class="fas fa-search"></i>
+                <input type="text" placeholder="Search transactions...">
+              </div>
+            </div>
+                  <div class="upload-controls">
+                    <button
+                      type="button"
+                      class="btn btn-outline"
+                      id="changePhotoBtn"
+                    >
+                      Change Photo
+                    </button>
+                    <p class="hint">JPG, GIF or PNG. Max size 2MB</p>
+                    <input
+                      type="file"
+                      id="profile-picture"
+                      accept="image/*"
+                      style="display: none"
+                    />
+                  </div>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="fullName">Full Name</label>
+                <input
+                  type="text"
+                  id="fullName"
+                  value="John Doe"
+                  class="form-control"
+                />
+              </div>
+
+              <div class="form-group">
+                <label for="email">Email Address</label>
+                <input
+                  type="email"
+                  id="email"
+                  value="john.doe@example.com"
+                  class="form-control"
+                />
+                <p class="hint">We'll use this email to contact you</p>
+              </div>
+
+              <div class="form-group">
+                <label for="phone">Phone Number</label>
+                <input
+                  type="tel"
+                  id="phone"
+                  value="+1 (555) 123-4567"
+                  class="form-control"
+                />
+              </div>
+
+              <div class="form-group">
+                <label for="bio">Bio</label>
+                <textarea
+                  id="bio"
+                  class="form-control"
+                  rows="4"
+                  placeholder="Tell us about yourself..."
+                >
+Travel enthusiast exploring the world one destination at a time. Love hiking, photography, and trying new cuisines!</textarea
+                >
+              </div>
+
+              <div class="form-actions">
+                <button type="button" class="btn btn-secondary">Cancel</button>
+                <button type="submit" class="btn btn-primary">
+                  Save Changes
+                </button>
+              </div>
+            </form>
+          </div>
+
+          <!-- Notifications Settings -->
+          <div class="settings-section" id="notifications-section">
+            <h1>Notification Preferences</h1>
+            <p class="section-description">
+              Choose how you receive notifications
+            </p>
+
+            <div class="notification-settings">
+              <div class="setting-item">
+                <div class="setting-info">
+                  <h3>Email Notifications</h3>
+                  <p>
+                    Receive updates about your bookings and account via email
+                  </p>
+                </div>
+                <label class="switch">
+                  <input type="checkbox" checked />
+                  <span class="slider"></span>
+                </label>
+              </div>
+
+              <div class="setting-item">
+                <div class="setting-info">
+                  <h3>Push Notifications</h3>
+                  <p>Get instant updates on your device</p>
+                </div>
+                <label class="switch">
+                  <input type="checkbox" checked />
+                  <span class="slider"></span>
+                </label>
+              </div>
+
+              <div class="setting-item">
+                <div class="setting-info">
+                  <h3>Special Offers</h3>
+                  <p>Receive special offers and promotions</p>
+                </div>
+                <label class="switch">
+                  <input type="checkbox" checked />
+                  <span class="slider"></span>
+                </label>
+              </div>
+
+              <div class="setting-item">
+                <div class="setting-info">
+                  <h3>Travel Updates</h3>
+                  <p>Get updates about your upcoming trips</p>
+                </div>
+                <label class="switch">
+                  <input type="checkbox" checked />
+                  <span class="slider"></span>
+                </label>
+              </div>
+            </div>
+          </div>
+
+          <!-- Privacy & Security -->
+          <div class="settings-section" id="privacy-section">
+            <h1>Privacy & Security</h1>
+            <p class="section-description">
+              Manage your privacy and account security settings
+            </p>
+
+            <div class="privacy-settings">
+              <div class="setting-card">
+                <i class="fas fa-lock"></i>
+                <div class="setting-details">
+                  <h3>Change Password</h3>
+                  <p>
+                    Update your password regularly to keep your account secure
+                  </p>
+                  <button class="btn btn-outline">Change Password</button>
+                </div>
+              </div>
+
+              <div class="setting-card">
+                <i class="fas fa-shield-alt"></i>
+                <div class="setting-details">
+                  <h3>Two-Factor Authentication</h3>
+                  <p>Add an extra layer of security to your account</p>
+                  <div class="toggle-with-status">
+                    <span class="status-badge">Inactive</span>
+                    <label class="switch">
+                      <input type="checkbox" />
+                      <span class="slider"></span>
+                    </label>
+                  </div>
+                </div>
+              </div>
+
+              <div class="setting-card">
+                <i class="fas fa-trash-alt"></i>
+                <div class="setting-details">
+                  <h3>Delete Account</h3>
+                  <p>Permanently delete your account and all associated data</p>
+                  <button class="btn btn-danger">Delete My Account</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="settings-content">
+        <!-- Account Section -->
+        <div class="settings-section active" id="account-section">
+          <!-- Account section content will be populated by JavaScript -->
+        </div>
+        
+        <!-- Notifications Section -->
+        <div class="settings-section" id="notifications-section">
+          <!-- Notifications section content will be populated by JavaScript -->
+        </div>
+        
+        <!-- Privacy Section -->
+        <div class="settings-section" id="privacy-section">
+          <!-- Privacy section content will be populated by JavaScript -->
+        </div>
+        
+        <!-- Payment Methods -->
+        <div class="settings-section" id="payment-section">
+            <div class="section-header">
+              <div>
+                <h1>Payment Methods</h1>
+                <p class="section-description">Manage your saved payment methods</p>
+              </div>
+              <button class="btn btn-primary" id="addPaymentMethod">
+                <i class="fas fa-plus"></i> Add Payment Method
+              </button>
+            </div>
+
+            <div class="payment-methods">
+              <div class="payment-method">
+                <div class="payment-icon">
+                  <i class="fab fa-cc-visa"></i>
+                </div>
+                <div class="payment-details">
+                  <h3>Visa ending in 4242</h3>
+                  <p>Expires 12/25</p>
+                </div>
+                <div class="payment-actions">
+                  <button class="btn-icon" title="Set as default">
+                    <i class="fas fa-star"></i>
+                  </button>
+                  <button class="btn-icon" title="Remove">
+                    <i class="fas fa-trash"></i>
+                  </button>
+                </div>
+              </div>
+
+              <div class="payment-method">
+                <div class="payment-icon">
+                  <i class="fab fa-cc-mastercard"></i>
+                </div>
+                <div class="payment-details">
+                  <h3>Mastercard ending in 5555</h3>
+                  <p>Expires 08/24</p>
+                </div>
+                <div class="payment-actions">
+                  <button class="btn-icon" title="Set as default">
+                    <i class="far fa-star"></i>
+                  </button>
+                  <button class="btn-icon" title="Remove">
+                    <i class="fas fa-trash"></i>
+                  </button>
+                </div>
+              </div>
+
+              <div class="no-payment-methods" style="display: none;">
+                <i class="fas fa-credit-card"></i>
+                <h3>No payment methods</h3>
+                <p>You haven't added any payment methods yet.</p>
+                <button class="btn btn-primary" id="addFirstPayment">
+                  Add Payment Method
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Billing -->
+          <div class="settings-section" id="billing-section">
+            <h1>Billing History</h1>
+            <p class="section-description">View and manage your billing history</p>
+            
+            <div class="billing-filters">
+              <div class="filter-group">
+                <label for="billingPeriod">Period</label>
+                <select id="billingPeriod" class="form-control">
+                  <option value="all">All Time</option>
+                  <option value="month">This Month</option>
+                  <option value="3months">Last 3 Months</option>
+                  <option value="year">This Year</option>
+                </select>
+              </div>
+              <div class="filter-group">
+                <label for="billingStatus">Status</label>
+                <select id="billingStatus" class="form-control">
+                  <option value="all">All Statuses</option>
+                  <option value="paid">Paid</option>
+                  <option value="refunded">Refunded</option>
+                  <option value="pending">Pending</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="billing-table">
+              <div class="table-header">
+                <div class="table-row">
+                  <div class="table-col">Date</div>
+                  <div class="table-col">Description</div>
+                  <div class="table-col">Amount</div>
+                  <div class="table-col">Status</div>
+                  <div class="table-col">Invoice</div>
+                </div>
+              </div>
+              <div class="table-body">
+                <div class="table-row">
+                  <div class="table-col">
+                    <div class="date">Jun 15, 2023</div>
+                    <div class="time">10:30 AM</div>
+                  </div>
+                  <div class="table-col">Premium Subscription</div>
+                  <div class="table-col">$9.99</div>
+                  <div class="table-col">
+                    <span class="status-badge success">Paid</span>
+                  </div>
+                  <div class="table-col">
+                    <button class="btn-icon" title="Download Invoice">
+                      <i class="fas fa-download"></i>
+                    </button>
+                  </div>
+                </div>
+                <div class="table-row">
+                  <div class="table-col">
+                    <div class="date">May 15, 2023</div>
+                    <div class="time">10:30 AM</div>
+                  </div>
+                  <div class="table-col">Premium Subscription</div>
+                  <div class="table-col">$9.99</div>
+                  <div class="table-col">
+                    <span class="status-badge success">Paid</span>
+                  </div>
+                  <div class="table-col">
+                    <button class="btn-icon" title="Download Invoice">
+                      <i class="fas fa-download"></i>
+                    </button>
+                  </div>
+                </div>
+                <div class="table-row">
+                  <div class="table-col">
+                    <div class="date">Apr 15, 2023</div>
+                    <div class="time">10:30 AM</div>
+                  </div>
+                  <div class="table-col">Premium Subscription</div>
+                  <div class="table-col">$9.99</div>
+                  <div class="table-col">
+                    <span class="status-badge refunded">Refunded</span>
+                  </div>
+                  <div class="table-col">
+                    <button class="btn-icon" title="Download Invoice">
+                      <i class="fas fa-download"></i>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="billing-summary">
+              <h3>Billing Summary</h3>
+              <div class="summary-item">
+                <span>Subtotal</span>
+                <span>$29.97</span>
+              </div>
+              <div class="summary-item">
+                <span>Tax</span>
+                <span>$2.40</span>
+              </div>
+              <div class="summary-item">
+                <span>Refund</span>
+                <span>-$9.99</span>
+              </div>
+              <div class="summary-item total">
+                <span>Total</span>
+                <span>$22.38</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Preferences -->
+          <div class="settings-section" id="preferences-section">
+            <h1>Preferences</h1>
+            <p class="section-description">
+              Customize your Wanderlust experience
+            </p>
+
+            <div class="preferences-category">
+              <h2>Display</h2>
+              
+              <div class="preference-item">
+                <div class="preference-info">
+                  <h3>Theme</h3>
+                  <p>Choose between light and dark mode</p>
+                </div>
+                <div class="theme-toggle">
+                  <button class="theme-option active" data-theme="light">
+                    <i class="fas fa-sun"></i> Light
+                  </button>
+                  <button class="theme-option" data-theme="dark">
+                    <i class="fas fa-moon"></i> Dark
+                  </button>
+                </div>
+              </div>
+
+              <div class="preference-item">
+                <div class="preference-info">
+                  <h3>Font Size</h3>
+                  <p>Adjust the text size for better readability</p>
+                </div>
+                <div class="font-size-selector">
+                  <button class="font-size-option" data-size="small">A</button>
+                  <button class="font-size-option active" data-size="medium">A</button>
+                  <button class="font-size-option" data-size="large">A</button>
+                </div>
+              </div>
+            </div>
+
+            <div class="preferences-category">
+              <h2>Language & Region</h2>
+              
+              <div class="form-group">
+                <label for="languageSelect">Language</label>
+                <select id="languageSelect" class="form-control">
+                  <option value="en">English</option>
+                  <option value="es">Español</option>
+                  <option value="fr">Français</option>
+                  <option value="de">Deutsch</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label for="timezoneSelect">Time Zone</label>
+                <select id="timezoneSelect" class="form-control">
+                  <option value="-12:00">(GMT-12:00) International Date Line West</option>
+                  <option value="-05:00">(GMT-05:00) Eastern Time (US & Canada)</option>
+                  <option value="+00:00">(GMT+00:00) London</option>
+                  <option value="+01:00">(GMT+01:00) Paris, Berlin</option>
+                  <option value="+05:30">(GMT+05:30) Mumbai, Kolkata, Chennai, New Delhi</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label>Date Format</label>
+                <div class="radio-group">
+                  <label class="radio-option">
+                    <input type="radio" name="dateFormat" value="MM/DD/YYYY" checked>
+                    <span class="radio-label">MM/DD/YYYY</span>
+                  </label>
+                  <label class="radio-option">
+                    <input type="radio" name="dateFormat" value="DD/MM/YYYY">
+                    <span class="radio-label">DD/MM/YYYY</span>
+                  </label>
+                  <label class="radio-option">
+                    <input type="radio" name="dateFormat" value="YYYY-MM-DD">
+                    <span class="radio-label">YYYY-MM-DD</span>
+                  </label>
+                </div>
+              </div>
+            </div>
+
+            <div class="preferences-category">
+              <h2>Notifications</h2>
+              
+              <div class="setting-item">
+                <div class="setting-info">
+                  <h3>Email Notifications</h3>
+                  <p>Receive updates about your bookings and account via email</p>
+                </div>
+                <label class="switch">
+                  <input type="checkbox" checked>
+                  <span class="slider"></span>
+                </label>
+              </div>
+
+              <div class="setting-item">
+                <div class="setting-info">
+                  <h3>Push Notifications</h3>
+                  <p>Get instant updates on your device</p>
+                </div>
+                <label class="switch">
+                  <input type="checkbox" checked>
+                  <span class="slider"></span>
+                </label>
+              </div>
+
+              <div class="setting-item">
+                <div class="setting-info">
+                  <h3>Marketing Emails</h3>
+                  <p>Receive special offers and promotions</p>
+                </div>
+                <label class="switch">
+                  <input type="checkbox" checked>
+                  <span class="slider"></span>
+                </label>
+              </div>
+            </div>
+
+            <div class="form-actions" style="margin-top: 2rem;">
+              <button type="button" class="btn btn-outline">Reset to Defaults</button>
+              <button type="button" class="btn btn-primary">Save Changes</button>
+            </div>
+          </div>
+          <!-- End of Preferences Section -->
+        </div>
+      </div>
+    </main>
+
+    <!-- Add Payment Method Modal -->
+    <div class="modal" id="paymentModal">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h2>Add Payment Method</h2>
+          <button class="close-modal">&times;</button>
+        </div>
+        <div class="modal-body">
+          <form id="paymentForm">
+            <div class="form-group">
+              <label for="cardholderName">Cardholder Name</label>
+              <input type="text" id="cardholderName" class="form-control" required>
+            </div>
+            
+            <div class="form-group">
+              <label for="cardNumber">Card Number</label>
+              <div class="input-with-icon">
+                <i class="far fa-credit-card"></i>
+                <input type="text" id="cardNumber" class="form-control" placeholder="1234 5678 9012 3456" required>
+              </div>
+            </div>
+            
+            <div class="form-row">
+              <div class="form-group">
+                <label for="expiryDate">Expiry Date</label>
+                <div class="input-with-icon">
+                  <i class="far fa-calendar-alt"></i>
+                  <input type="text" id="expiryDate" class="form-control" placeholder="MM/YY" required>
+                </div>
+              </div>
+              
+              <div class="form-group">
+                <label for="cvv">CVV</label>
+                <div class="input-with-icon">
+                  <i class="fas fa-lock"></i>
+                  <input type="text" id="cvv" class="form-control" placeholder="123" required>
+                  <i class="fas fa-question-circle" title="3 or 4 digit code on the back of your card"></i>
+                </div>
+              </div>
+            </div>
+            
+            <div class="form-group">
+              <div class="checkbox-container">
+                <input type="checkbox" id="saveCard" checked>
+                <label for="saveCard">Save this card for future payments</label>
+              </div>
+            </div>
+            
+            <div class="form-actions">
+              <button type="button" class="btn btn-outline close-modal">Cancel</button>
+              <button type="submit" class="btn btn-primary">Add Payment Method</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <script src="js/navigation.js"></script>
+    <script src="js/settings.js"></script>
+  </body>
+</html>

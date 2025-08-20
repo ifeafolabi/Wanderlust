@@ -1,0 +1,608 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Exclusive Deals - Wanderlust Travels</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="css/shared.css" />
+    <link rel="stylesheet" href="css/navigation.css" />
+    <style>
+    .hero {
+      position: relative;
+      background: url('https://images.unsplash.com/photo-1499678329028-101435549a4e?w=1920&auto=format&fit=crop&q=80');
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
+      background-repeat: no-repeat;
+      color: white;
+      padding: 10rem 0 8rem;
+      text-align: center;
+      overflow: hidden;
+      margin-top: -15px;
+    }
+    
+    .hero::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.3);
+      z-index: 1;
+    }
+    
+    .hero .container {
+      position: relative;
+      z-index: 2;
+    }
+    
+    .hero h1 {
+      font-size: 3rem;
+      margin-bottom: 1.5rem;
+      font-weight: 800;
+      line-height: 1.2;
+    }
+    
+    .hero p {
+      font-size: 1.25rem;
+      max-width: 600px;
+      margin: 0 auto 3rem;
+      opacity: 0.9;
+    }
+    
+    .hero-buttons {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .deals-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px 60px;
+    }
+
+    .deals-filter {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 15px;
+      margin-bottom: 40px;
+    }
+
+    .filter-btn {
+      padding: 8px 20px;
+      border: 2px solid #e5e7eb;
+      border-radius: 20px;
+      background: white;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .filter-btn:hover,
+    .filter-btn.active {
+      background: #4f46e5;
+      color: white;
+      border-color: #4f46e5;
+    }
+
+    .deals-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+      gap: 30px;
+      margin-top: 30px;
+    }
+
+    .deal-card {
+      background: white;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s ease;
+      position: relative;
+    }
+
+    .deal-card:hover {
+      transform: translateY(-5px);
+    }
+
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      background-color: var(--light, #f8fafc);
+      color: var(--dark, #1e293b);
+      line-height: 1.5;
+      margin: 0;
+      padding: 0;
+    }
+
+    .deal-badge {
+      position: absolute;
+      top: 15px;
+      right: 15px;
+      background: #ef4444;
+      color: white;
+      padding: 5px 10px;
+      border-radius: 4px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      z-index: 1;
+    }
+
+    .deal-image {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+    }
+
+    .deal-content {
+      padding: 20px;
+    }
+
+    .deal-destination {
+      font-size: 1.4rem;
+      font-weight: 700;
+      margin: 0 0 10px 0;
+      color: #1f2937;
+    }
+
+    .deal-duration {
+      color: #6b7280;
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+    }
+
+    .deal-duration i {
+      margin-right: 5px;
+    }
+
+    .deal-features {
+      margin: 15px 0;
+      padding: 15px 0;
+      border-top: 1px solid #e5e7eb;
+      border-bottom: 1px solid #e5e7eb;
+    }
+
+    .feature {
+      display: flex;
+      align-items: center;
+      margin-bottom: 8px;
+      color: #4b5563;
+    }
+
+    .feature i {
+      color: #4f46e5;
+      margin-right: 10px;
+      width: 20px;
+      text-align: center;
+    }
+
+    .deal-price {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 15px;
+    }
+
+    .price {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: #4f46e5;
+    }
+
+    .price span {
+      font-size: 1rem;
+      color: #6b7280;
+      text-decoration: line-through;
+      margin-left: 5px;
+    }
+
+    .btn-book {
+      background: #4f46e5;
+      color: white;
+      border: none;
+      padding: 8px 20px;
+      border-radius: 5px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .btn-book:hover {
+      background: #4338ca;
+    }
+
+    .newsletter-section {
+      background: #f3f4f6;
+      padding: 60px 20px;
+      margin-top: 60px;
+      text-align: center;
+    }
+
+    .newsletter-container {
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .newsletter-form {
+      display: flex;
+      gap: 10px;
+      margin-top: 20px;
+    }
+
+    .newsletter-form input {
+      flex: 1;
+      padding: 12px 15px;
+      border: 2px solid #e5e7eb;
+      border-radius: 5px;
+      font-size: 16px;
+    }
+
+    .newsletter-form button {
+      background: #4f46e5;
+      color: white;
+      border: none;
+      padding: 0 25px;
+      border-radius: 5px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .newsletter-form button:hover {
+      background: #4338ca;
+    }
+  </style>
+</head>
+<body>
+  <!-- Navigation will be injected by navigation.js -->
+  <nav class="navbar">
+    <div class="container"></div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="container">
+      <h1>Exclusive Travel Deals</h1>
+      <p>Unbeatable prices on dream vacations. Limited time offers - book now!</p>
+      <div class="hero-buttons">
+        <a href="destinations.html" class="btn btn-primary">Explore Destinations</a>
+        <a href="#featured-deals" class="btn btn-outline" style="background: rgba(255, 255, 255, 0.1); color: white; border-color: white;">View Deals</a>
+      </div>
+    </div>
+  </section>
+
+  <div class="deals-container">
+    <!-- Filter Buttons -->
+    <div class="deals-filter">
+      <button class="filter-btn active" data-category="all">All Deals</button>
+      <button class="filter-btn" data-category="last-minute">Last Minute</button>
+      <button class="filter-btn" data-category="family">Family Packages</button>
+      <button class="filter-btn" data-category="luxury">Luxury Escapes</button>
+      <button class="filter-btn" data-category="beach">Beach Vacations</button>
+      <button class="filter-btn" data-category="adventure">Adventure Tours</button>
+    </div>
+
+    <!-- Deals Grid -->
+    <div class="deals-grid">
+      <!-- Deal 1 -->
+      <div class="deal-card" data-category="luxury">
+        <div class="deal-badge">30% OFF</div>
+        <img src="https://plus.unsplash.com/premium_photo-1675745329634-8c187fa18c00?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8THV4dXJ5JTIwYmFsaSUyMGdhdGV3YXl8ZW58MHx8MHx8fDA%3D" alt="Bali Vacation" class="deal-image">
+        <div class="deal-content">
+          <h3 class="deal-destination">Luxury Bali Getaway</h3>
+          <div class="deal-duration">
+            <i class="far fa-calendar-alt"></i> 7 Days / 6 Nights
+          </div>
+          <div class="deal-features">
+            <div class="feature">
+              <i class="fas fa-hotel"></i> 5-Star Beachfront Resort
+            </div>
+            <div class="feature">
+              <i class="fas fa-utensils"></i> Breakfast Included
+            </div>
+            <div class="feature">
+              <i class="fas fa-plane"></i> Flights Included
+            </div>
+          </div>
+          <div class="deal-price">
+            <div class="price">
+              $1,299 <span>$1,899</span>
+            </div>
+            <button class="btn-book">Book Now</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Deal 2 -->
+      <div class="deal-card" data-category="last-minute">
+        <div class="deal-badge">FLASH SALE</div>
+        <img src="https://images.unsplash.com/photo-1612690254243-c9986784fc70?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mjh8fGdyZWVrJTIwaXNsYW5kJTIwaG9wcGluZ3xlbnwwfHwwfHx8MA%3D%3D" alt="Greek Islands" class="deal-image">
+        <div class="deal-content">
+          <h3 class="deal-destination">Greek Island Hopping</h3>
+          <div class="deal-duration">
+            <i class="far fa-calendar-alt"></i> 10 Days / 9 Nights
+          </div>
+          <div class="deal-features">
+            <div class="feature">
+              <i class="fas fa-ship"></i> 4-Island Cruise
+            </div>
+            <div class="feature">
+              <i class="fas fa-utensils"></i> All Meals Included
+            </div>
+            <div class="feature">
+              <i class="fas fa-map-marked-alt"></i> Guided Tours
+            </div>
+          </div>
+          <div class="deal-price">
+            <div class="price">
+              $1,799 <span>$2,399</span>
+            </div>
+            <button class="btn-book">Book Now</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Deal 3 -->
+      <div class="deal-card" data-category="family">
+        <div class="deal-badge">WEEKEND DEAL</div>
+        <img src="https://images.unsplash.com/photo-1699726254852-54b2fc342ffe?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MzB8fHJvbWFudGljJTIwcGFyaXMlMjB3ZWVrZW5kfGVufDB8fDB8fHww" alt="Paris Weekend" class="deal-image">
+        <div class="deal-content">
+          <h3 class="deal-destination">Romantic Paris Weekend</h3>
+          <div class="deal-duration">
+            <i class="far fa-calendar-alt"></i> 3 Days / 2 Nights
+          </div>
+          <div class="deal-features">
+            <div class="feature">
+              <i class="fas fa-hotel"></i> Boutique Hotel in City Center
+            </div>
+            <div class="feature">
+              <i class="fas fa-wine-glass-alt"></i> Welcome Drink
+            </div>
+            <div class="feature">
+              <i class="fas fa-ticket-alt"></i> Eiffel Tower Tickets
+            </div>
+          </div>
+          <div class="deal-price">
+            <div class="price">
+              $599 <span>$799</span>
+            </div>
+            <button class="btn-book">Book Now</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Newsletter Section -->
+  <section class="newsletter-section">
+    <div class="newsletter-container">
+      <h2>Don't Miss Our Best Deals</h2>
+      <p>Subscribe to our newsletter and be the first to know about exclusive offers and discounts.</p>
+      <form class="newsletter-form">
+        <input type="email" placeholder="Enter your email address" required>
+        <button type="submit">Subscribe</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- Scripts -->
+  <script src="auth.js"></script>
+  <script src="js/navigation.js"></script>
+  <script src="script.js"></script>
+  <style>
+    .navbar {
+      background: white;
+      box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+      padding: 1rem 0;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+    }
+    
+    .nav-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+    }
+    
+    .logo {
+      display: flex;
+      align-items: center;
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: #1f2937;
+      text-decoration: none;
+    }
+    
+    .logo i {
+      margin-right: 0.5rem;
+      color: #4f46e5;
+    }
+    
+    .user-actions {
+      display: flex;
+      gap: 1rem;
+      align-items: center;
+    }
+    
+    .btn-outline {
+      background: transparent;
+      border: 1px solid #e5e7eb;
+      color: #4f46e5;
+      padding: 0.5rem 1rem;
+      border-radius: 0.5rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.2s;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    
+    .btn-outline:hover {
+      background: #f9fafb;
+      border-color: #d1d5db;
+    }
+    
+    .btn-outline.active {
+      background: #4f46e5;
+      color: white;
+      border-color: #4f46e5;
+    }
+    
+    .dropdown {
+      position: relative;
+      display: inline-block;
+    }
+    
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      right: 0;
+      background: white;
+      min-width: 200px;
+      box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+      border-radius: 8px;
+      z-index: 1000;
+      padding: 10px 0;
+      margin-top: 5px;
+    }
+    
+    .dropdown-content a {
+      display: block;
+      padding: 8px 20px;
+      color: #333;
+      text-decoration: none;
+      transition: background 0.2s;
+    }
+    
+    .dropdown-content a:hover {
+      background: #f9fafb;
+    }
+    
+    .dropdown-content a i {
+      width: 20px;
+      margin-right: 10px;
+      color: #6b7280;
+    }
+  </style>
+  <style>
+    /* Add some top padding to account for fixed navbar */
+    .deals-hero,
+    .deals-container {
+      padding-top: 80px;
+    }
+    
+    .deal-card {
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .deal-badge {
+      position: absolute;
+      top: 15px;
+      right: 15px;
+      background: #4f46e5;
+      color: white;
+      padding: 5px 10px;
+      border-radius: 4px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      z-index: 1;
+    }
+    
+    .filter-btn {
+      padding: 8px 20px;
+      border: 2px solid #e5e7eb;
+      border-radius: 20px;
+      background: white;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      font-weight: 500;
+      margin: 5px;
+    }
+    
+    .filter-btn:hover,
+    .filter-btn.active {
+      background: #4f46e5;
+      color: white;
+      border-color: #4f46e5;
+      transform: translateY(-2px);
+    }
+    
+    .deals-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+      gap: 30px;
+      margin-top: 30px;
+    }
+    
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    
+    .deal-card.hidden {
+      display: none;
+    }
+    
+    .deal-card.visible {
+      display: block;
+      animation: fadeIn 0.5s ease-out;
+    }
+    
+    .deals-filter {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin-bottom: 30px;
+      gap: 10px;
+    }
+  </style>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const filterButtons = document.querySelectorAll('.filter-btn');
+      const dealCards = document.querySelectorAll('.deal-card');
+      
+      // Filter functionality
+      filterButtons.forEach(button => {
+        button.addEventListener('click', () => {
+          const category = button.dataset.category;
+          
+          // Update active button with animation
+          filterButtons.forEach(btn => {
+            btn.classList.remove('active');
+            btn.style.transform = '';
+          });
+          
+          button.classList.add('active');
+          button.style.transform = 'translateY(-2px)';
+          
+          // Filter cards with animation
+          dealCards.forEach(card => {
+            if (category === 'all' || card.dataset.category === category) {
+              card.classList.remove('hidden');
+              card.classList.add('visible');
+            } else {
+              card.classList.add('hidden');
+              card.classList.remove('visible');
+            }
+          });
+        });
+      });
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Profile - Wanderlust</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/shared.css">
+    <link rel="stylesheet" href="css/navigation.css">
+    <link rel="stylesheet" href="css/profile.css">
+</head>
+<body>
+    <header class="navbar">
+        <div class="container">
+            <!-- Navigation will be inserted here by navigation.js -->
+        </div>
+    </header>
+
+    <main class="container">
+        <div class="profile-container">
+            <div class="profile-header">
+                <div class="profile-avatar">
+                    <img src="https://ui-avatars.com/api/?name=User&background=4f46e5&color=fff&size=150" alt="Profile" id="profilePicture">
+                    <button class="edit-avatar-btn" id="changeAvatarBtn">
+                        <i class="fas fa-camera"></i>
+                    </button>
+                    <input type="file" id="avatarUpload" accept="image/*" style="display: none;">
+                </div>
+                <div class="profile-info">
+                    <h1 id="userName">Welcome Back</h1>
+                    <p class="member-since">Member since <span id="memberSince">2024</span></p>
+                    <div class="profile-stats">
+                        <div class="stat-item">
+                            <span class="stat-number" id="tripsCount">0</span>
+                            <span class="stat-label">Trips</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number" id="reviewsCount">0</span>
+                            <span class="stat-label">Reviews</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="profile-content">
+                <div class="profile-section">
+                    <div class="section-header">
+                        <h2>Personal Information</h2>
+                        <button class="btn btn-text" id="editPersonalInfo">
+                            <i class="fas fa-edit"></i> Edit
+                        </button>
+                    </div>
+                    
+                    <form id="personalInfoForm" class="info-form">
+                        <div class="form-group">
+                            <label for="fullName">Full Name</label>
+                            <input type="text" id="fullName" name="fullName" class="form-control" placeholder="Enter your full name">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="email">Email Address</label>
+                            <input type="email" id="email" name="email" class="form-control" placeholder="Enter your email">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="phone">Phone Number</label>
+                            <input type="tel" id="phone" name="phone" class="form-control" placeholder="Enter your phone number">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="location">Location</label>
+                            <input type="text" id="location" name="location" class="form-control" placeholder="Enter your location">
+                        </div>
+                        
+                        <div class="form-actions">
+                            <button type="button" class="btn btn-outline" id="cancelPersonalInfo">Cancel</button>
+                            <button type="submit" class="btn btn-primary">Save Changes</button>
+                        </div>
+                    </form>
+                </div>
+
+                <div class="profile-section">
+                    <div class="section-header">
+                        <h2>Travel Preferences</h2>
+                        <button class="btn btn-text" id="editPreferences">
+                            <i class="fas fa-edit"></i> Edit
+                        </button>
+                    </div>
+                    
+                    <div id="preferencesView">
+                        <p class="no-preferences">You haven't set any travel preferences yet.</p>
+                        <button class="btn btn-outline" id="addPreferencesBtn">
+                            <i class="fas fa-plus"></i> Add Preferences
+                        </button>
+                    </div>
+                    
+                    <form id="preferencesForm" class="preferences-form" style="display: none;">
+                        <div class="preferences-grid">
+                            <label class="preference-option">
+                                <input type="checkbox" name="preferences" value="beach">
+                                <div class="preference-item">
+                                    <i class="fas fa-umbrella-beach"></i>
+                                    <span>Beach</span>
+                                </div>
+                            </label>
+                            
+                            <label class="preference-option">
+                                <input type="checkbox" name="preferences" value="mountain">
+                                <div class="preference-item">
+                                    <i class="fas fa-mountain"></i>
+                                    <span>Mountain</span>
+                                </div>
+                            </label>
+                            
+                            <label class="preference-option">
+                                <input type="checkbox" name="preferences" value="city">
+                                <div class="preference-item">
+                                    <i class="fas fa-city"></i>
+                                    <span>City</span>
+                                </div>
+                            </label>
+                            
+                            <label class="preference-option">
+                                <input type="checkbox" name="preferences" value="adventure">
+                                <div class="preference-item">
+                                    <i class="fas fa-hiking"></i>
+                                    <span>Adventure</span>
+                                </div>
+                            </label>
+                            
+                            <label class="preference-option">
+                                <input type="checkbox" name="preferences" value="food">
+                                <div class="preference-item">
+                                    <i class="fas fa-utensils"></i>
+                                    <span>Food & Dining</span>
+                                </div>
+                            </label>
+                            
+                            <label class="preference-option">
+                                <input type="checkbox" name="preferences" value="culture">
+                                <div class="preference-item">
+                                    <i class="fas fa-landmark"></i>
+                                    <span>Culture</span>
+                                </div>
+                            </label>
+                        </div>
+                        
+                        <div class="form-actions">
+                            <button type="button" class="btn btn-outline" id="cancelPreferences">Cancel</button>
+                            <button type="submit" class="btn btn-primary">Save Preferences</button>
+                        </div>
+                    </form>
+                </div>
+                
+                <div class="profile-section">
+                    <h2>Account Security</h2>
+                    <div class="security-options">
+                        <div class="security-item">
+                            <div class="security-info">
+                                <h3>Change Password</h3>
+                                <p>Update your password regularly to keep your account secure</p>
+                            </div>
+                            <button class="btn btn-outline">Change Password</button>
+                        </div>
+                        
+                        <div class="security-item">
+                            <div class="security-info">
+                                <h3>Two-Factor Authentication</h3>
+                                <p>Add an extra layer of security to your account</p>
+                            </div>
+                            <label class="switch">
+                                <input type="checkbox">
+                                <span class="slider"></span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="js/navigation.js"></script>
+    <script src="js/profile.js"></script>
+</body>
+</html>

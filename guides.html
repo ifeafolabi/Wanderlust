@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Travel Guides - Wanderlust Travels</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="css/shared.css" />
+    <link rel="stylesheet" href="css/navigation.css" />
+    <style>
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      background-color: #f8fafc;
+      color: #1e293b;
+      line-height: 1.5;
+      margin: 0;
+      padding: 0;
+    }
+    
+    .hero {
+      position: relative;
+      background: url('https://images.unsplash.com/photo-1501785888041-af3ef285b470?w=1920&auto=format&fit=crop&q=80');
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
+      background-repeat: no-repeat;
+      color: white;
+      padding: 10rem 0 8rem;
+      text-align: center;
+      overflow: hidden;
+      margin-top: -15px;
+    }
+    
+    .hero::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.3);
+      z-index: 1;
+    }
+    
+    .hero .container {
+      position: relative;
+      z-index: 2;
+    }
+    
+    .hero h1 {
+      font-size: 3rem;
+      margin-bottom: 1.5rem;
+      font-weight: 800;
+      line-height: 1.2;
+    }
+    
+    .hero p {
+      font-size: 1.25rem;
+      max-width: 600px;
+      margin: 0 auto 3rem;
+      opacity: 0.9;
+    }
+    
+    .hero-buttons {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .guides-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px 60px;
+    }
+
+    .guide-categories {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 15px;
+      margin-bottom: 40px;
+    }
+
+    .category-btn {
+      padding: 8px 20px;
+      border: 2px solid #e5e7eb;
+      border-radius: 20px;
+      background: white;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .category-btn:hover,
+    .category-btn.active {
+      background: #4f46e5;
+      color: white;
+      border-color: #4f46e5;
+    }
+
+    .guides-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+      gap: 30px;
+      margin-top: 30px;
+    }
+
+    .guide-card {
+      background: white;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s ease;
+    }
+
+    .guide-card:hover {
+      transform: translateY(-5px);
+    }
+
+    .guide-image {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+    }
+
+    .guide-content {
+      padding: 20px;
+    }
+
+    .guide-meta {
+      display: flex;
+      align-items: center;
+      color: #6b7280;
+      font-size: 0.9rem;
+      margin-bottom: 10px;
+    }
+
+    .guide-meta span {
+      margin-right: 15px;
+      display: flex;
+      align-items: center;
+    }
+
+    .guide-meta i {
+      margin-right: 5px;
+    }
+
+    .guide-content h3 {
+      margin: 0 0 10px 0;
+      color: #1f2937;
+      font-size: 1.3rem;
+    }
+
+    .guide-excerpt {
+      color: #6b7280;
+      margin-bottom: 15px;
+      line-height: 1.5;
+    }
+
+    .read-more {
+      color: #4f46e5;
+      text-decoration: none;
+      font-weight: 600;
+      display: inline-flex;
+      align-items: center;
+    }
+
+    .read-more i {
+      margin-left: 5px;
+      transition: transform 0.3s ease;
+    }
+
+    .read-more:hover i {
+      transform: translateX(5px);
+    }
+  </style>
+</head>
+<body>
+  <!-- Navigation will be injected by navigation.js -->
+  <nav class="navbar">
+    <div class="container"></div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="container">
+      <h1>Travel Guides & Tips</h1>
+      <p>Expert advice, travel hacks, and inspiration for your next adventure</p>
+      <div class="hero-buttons">
+        <a href="#featured-guides" class="btn btn-primary">Read Guides</a>
+        <a href="#categories" class="btn btn-outline" style="background: rgba(255, 255, 255, 0.1); color: white; border-color: white;">Browse Categories</a>
+      </div>
+    </div>
+  </section>
+
+  <div class="guides-container">
+    <!-- Categories -->
+    <div class="guide-categories">
+      <button class="filter-btn active" data-category="all">All Guides</button>
+      <button class="filter-btn" data-category="tips">Travel Tips</button>
+      <button class="filter-btn" data-category="packing">Packing Guides</button>
+      <button class="filter-btn" data-category="budget">Budget Travel</button>
+      <button class="filter-btn" data-category="solo">Solo Travel</button>
+      <button class="filter-btn" data-category="food">Food & Drink</button>
+    </div>
+
+    <!-- Guides Grid -->
+    <div class="guides-grid">
+      <!-- Guide 1 -->
+      <article class="guide-card" data-category="packing">
+        <div class="guide-badge">Packing</div>
+        <img src="https://plus.unsplash.com/premium_photo-1663076557928-d41be65b3bfb?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8cGFja2luZyUyMHRyYXZlbHxlbnwwfHwwfHx8MA%3D%3D" alt="Packing Tips" class="guide-image">
+        <div class="guide-content">
+          <div class="guide-meta">
+            <span><i class="far fa-calendar-alt"></i> June 15, 2023</span>
+            <span><i class="far fa-folder"></i> Packing Guides</span>
+          </div>
+          <h3>The Ultimate Packing List for Any Trip</h3>
+          <p class="guide-excerpt">Never forget an essential item again with our comprehensive packing guide for all types of travelers and destinations.</p>
+          <a href="#" class="read-more">Read More <i class="fas fa-arrow-right"></i></a>
+        </div>
+      </article>
+
+      <!-- Guide 2 -->
+      <article class="guide-card" data-category="budget">
+        <div class="guide-badge">Budget</div>
+        <img src="https://images.unsplash.com/photo-1501785888041-af3ef285b470?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Budget Travel" class="guide-image">
+        <div class="guide-content">
+          <div class="guide-meta">
+            <span><i class="far fa-calendar-alt"></i> June 5, 2023</span>
+            <span><i class="far fa-folder"></i> Budget Travel</span>
+          </div>
+          <h3>How to Travel the World on $50 a Day</h3>
+          <p class="guide-excerpt">Discover insider tips and tricks for stretching your travel budget without sacrificing amazing experiences.</p>
+          <a href="#" class="read-more">Read More <i class="fas fa-arrow-right"></i></a>
+        </div>
+      </article>
+
+      <!-- Guide 3 -->
+      <article class="guide-card" data-category="solo">
+        <div class="guide-badge">Solo</div>
+        <img src="https://images.unsplash.com/photo-1530789253388-582c481c54b0?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8N3x8VHJhdmVsfGVufDB8fDB8fHww" alt="Solo Travel" class="guide-image">
+        <div class="guide-content">
+          <div class="guide-meta">
+            <span><i class="far fa-calendar-alt"></i> May 28, 2023</span>
+            <span><i class="far fa-folder"></i> Solo Travel</span>
+          </div>
+          <h3>The Solo Traveler's Guide to Making Friends on the Road</h3>
+          <p class="guide-excerpt">Learn how to meet fellow travelers and locals while exploring the world on your own terms.</p>
+          <a href="#" class="read-more">Read More <i class="fas fa-arrow-right"></i></a>
+        </div>
+      </article>
+
+      <!-- Guide 4 -->
+      <article class="guide-card" data-category="food">
+        <div class="guide-badge">Food</div>
+        <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Food Travel" class="guide-image">
+        <div class="guide-content">
+          <div class="guide-meta">
+            <span><i class="far fa-calendar-alt"></i> May 15, 2023</span>
+            <span><i class="far fa-folder"></i> Food & Drink</span>
+          </div>
+          <h3>10 Must-Try Street Foods Around the World</h3>
+          <p class="guide-excerpt">Embark on a culinary journey with these delicious street foods you can't miss on your travels.</p>
+          <a href="#" class="read-more">Read More <i class="fas fa-arrow-right"></i></a>
+        </div>
+      </article>
+
+      <!-- Guide 5 -->
+      <article class="guide-card" data-category="tips">
+        <div class="guide-badge">Tips</div>
+        <img src="https://images.unsplash.com/photo-1567502401034-b947ee46e249?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8N3x8VHJhdmVsbGluZyUyMHdpdGglMjBraWRzfGVufDB8fDB8fHww" alt="Family Travel" class="guide-image">
+        <div class="guide-content">
+          <div class="guide-meta">
+            <span><i class="far fa-calendar-alt"></i> May 5, 2023</span>
+            <span><i class="far fa-folder"></i> Family Travel</span>
+          </div>
+          <h3>Traveling with Kids: A Stress-Free Guide</h3>
+          <p class="guide-excerpt">Keep your family vacation fun and stress-free with these essential tips for traveling with children.</p>
+          <a href="#" class="read-more">Read More <i class="fas fa-arrow-right"></i></a>
+        </div>
+      </article>
+
+      <!-- Guide 6 -->
+      <article class="guide-card" data-category="tips">
+        <div class="guide-badge">Tips</div>
+        <img src="https://images.unsplash.com/photo-1579504344957-c09070053c7e?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nnx8VHJhdmVsJTIwcGhvdG9ncmFwaHl8ZW58MHx8MHx8fDA%3D" alt="Travel Photography" class="guide-image">
+        <div class="guide-content">
+          <div class="guide-meta">
+            <span><i class="far fa-calendar-alt"></i> April 22, 2023</span>
+            <span><i class="far fa-folder"></i> Photography</span>
+          </div>
+          <h3>10 Essential Travel Photography Tips for Stunning Vacation Photos</h3>
+          <p class="guide-excerpt">Capture your travel memories like a pro with these essential photography tips and techniques.</p>
+          <a href="#" class="read-more">Read More <i class="fas fa-arrow-right"></i></a>
+        </div>
+      </article>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="auth.js"></script>
+  <script src="js/navigation.js"></script>
+  <script src="script.js"></script>
+  <style>
+    .navbar {
+      background: white;
+      box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+      padding: 1rem 0;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+    }
+    
+    .nav-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+    }
+    
+    .logo {
+      display: flex;
+      align-items: center;
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: #1f2937;
+      text-decoration: none;
+    }
+    
+    .logo i {
+      margin-right: 0.5rem;
+      color: #4f46e5;
+    }
+    
+    .user-actions {
+      display: flex;
+      gap: 1rem;
+      align-items: center;
+    }
+    
+    .btn-outline {
+      background: transparent;
+      border: 1px solid #e5e7eb;
+      color: #4f46e5;
+      padding: 0.5rem 1rem;
+      border-radius: 0.5rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.2s;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    
+    .btn-outline:hover {
+      background: #f9fafb;
+      border-color: #d1d5db;
+    }
+    
+    .btn-outline.active {
+      background: #4f46e5;
+      color: white;
+      border-color: #4f46e5;
+    }
+    
+    .dropdown {
+      position: relative;
+      display: inline-block;
+    }
+    
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      right: 0;
+      background: white;
+      min-width: 200px;
+      box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+      border-radius: 8px;
+      z-index: 1000;
+      padding: 10px 0;
+      margin-top: 5px;
+    }
+    
+    .dropdown-content a {
+      display: block;
+      padding: 8px 20px;
+      color: #333;
+      text-decoration: none;
+      transition: background 0.2s;
+    }
+    
+    .dropdown-content a:hover {
+      background: #f9fafb;
+    }
+    
+    .dropdown-content a i {
+      width: 20px;
+      margin-right: 10px;
+      color: #6b7280;
+    }
+  </style>
+  <style>
+    /* Add some top padding to account for fixed navbar */
+    .guides-hero,
+    .guides-container {
+      padding-top: 80px;
+    }
+    
+    .guide-badge {
+      position: absolute;
+      top: 15px;
+      right: 15px;
+      background: #4f46e5;
+      color: white;
+      padding: 5px 10px;
+      border-radius: 20px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      z-index: 1;
+      text-transform: capitalize;
+    }
+    
+    .guide-card {
+      position: relative;
+      transition: transform 0.3s ease, opacity 0.3s ease;
+    }
+    
+    .filter-btn {
+      padding: 8px 20px;
+      border: 2px solid #e5e7eb;
+      border-radius: 20px;
+      background: white;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      font-weight: 500;
+    }
+    
+    .filter-btn:hover,
+    .filter-btn.active {
+      background: #4f46e5;
+      color: white;
+      border-color: #4f46e5;
+      transform: translateY(-2px);
+    }
+    
+    .guides-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+      gap: 30px;
+      margin-top: 30px;
+    }
+    
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    
+    .guide-card.hidden {
+      display: none;
+    }
+    
+    .guide-card.visible {
+      display: block;
+      animation: fadeIn 0.5s ease-out;
+    }
+  </style>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const filterButtons = document.querySelectorAll('.filter-btn');
+      const guideCards = document.querySelectorAll('.guide-card');
+      
+      // Add active class to current nav link is handled in navigation.js
+      
+      // Filter functionality
+      filterButtons.forEach(button => {
+        button.addEventListener('click', () => {
+          const category = button.dataset.category;
+          
+          // Update active button
+          filterButtons.forEach(btn => btn.classList.remove('active'));
+          button.classList.add('active');
+          
+          // Filter cards
+          guideCards.forEach(card => {
+            if (category === 'all' || card.dataset.category === category) {
+              card.classList.remove('hidden');
+              card.classList.add('visible');
+            } else {
+              card.classList.add('hidden');
+              card.classList.remove('visible');
+            }
+          });
+        });
+      });
+    });
+  </script>
+</body>
+</html>

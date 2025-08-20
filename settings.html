@@ -1,0 +1,603 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Account Settings - Wanderlust</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/shared.css" />
+    <link rel="stylesheet" href="css/navigation.css" />
+    <link rel="stylesheet" href="css/settings.css" />
+    <style>
+      :root {
+        --primary: #4f46e5;
+        --primary-dark: #4338ca;
+        --light: #f9fafb;
+        --dark: #1f2937;
+        --gray-100: #f3f4f6;
+        --gray-200: #e5e7eb;
+        --gray-300: #d1d5db;
+        --gray-400: #9ca3af;
+        --gray-500: #6b7280;
+        --gray-600: #4b5563;
+        --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+        --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
+          0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        --rounded: 0.5rem;
+      }
+
+      @keyframes modalSlideIn {
+        from {
+          opacity: 0;
+          transform: translateY(20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      body {
+        font-family: "Plus Jakarta Sans", -apple-system, BlinkMacSystemFont,
+          "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+        background-color: var(--light);
+        color: var(--dark);
+        padding-top: 80px;
+      }
+
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 1.5rem;
+      }
+    </style>
+  </head>
+  <body>
+    <header class="navbar">
+      <div class="container">
+        <!-- Navigation will be inserted here by navigation.js -->
+      </div>
+    </header>
+
+    <main class="container" style="margin-top: 2rem">
+      <div class="settings-container">
+        <!-- Sidebar Navigation -->
+        <div class="settings-sidebar">
+          <h2>Settings</h2>
+          <nav class="settings-nav">
+            <a href="#" class="nav-item active" data-section="account">
+              <i class="fas fa-user-circle"></i>
+              <span>Account</span>
+            </a>
+            <a href="#" class="nav-item" data-section="notifications">
+              <i class="fas fa-bell"></i>
+              <span>Notifications</span>
+            </a>
+            <a href="#" class="nav-item" data-section="privacy">
+              <i class="fas fa-lock"></i>
+              <span>Privacy & Security</span>
+            </a>
+            <a href="#" class="nav-item" data-section="payment">
+              <i class="fas fa-credit-card"></i>
+              <span>Payment Methods</span>
+            </a>
+            <a href="#" class="nav-item" data-section="billing">
+              <i class="fas fa-file-invoice-dollar"></i>
+              <span>Billing</span>
+            </a>
+            <a href="#" class="nav-item" data-section="preferences">
+              <i class="fas fa-sliders-h"></i>
+              <span>Preferences</span>
+            </a>
+          </nav>
+        </div>
+
+        <!-- Main Content Area -->
+        <div class="settings-content">
+          <!-- Account Section -->
+          <div class="settings-section active" id="account-section">
+            <h1>Account Settings</h1>
+            <p class="section-description">
+              Manage your account information and settings
+            </p>
+
+            <form class="settings-form">
+              <div class="form-group">
+                <label for="profile-picture">Profile Picture</label>
+                <div class="profile-picture-upload">
+                  <div class="profile-preview">
+                    <img
+                      src="https://ui-avatars.com/api/?name=AI&background=4f46e5&color=fff&size=200"
+                      alt="Profile"
+                      id="profilePreview"
+                      onerror="this.src='data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCI+PHBhdGggZmlsbD0iI0YzRjRGNiIgZD0iTTEyIDJDNi40OCAyIDIgNi40OCAyIDEyczQuNDggMTAgMTAgMTAgMTAtNC40OCAxMC0xMFMxNy41MiAyIDEyIDJ6bTAgM2MxLjY2IDAgMyAxLjM0IDMgM3MtMS4zNCAzLTMgM3MtMy0xLjM0LTMtMyAxLjM0LTMgMy0zem0wIDE0LjJjLTIuNSAwLTQuNzEtMS4yLTYuMTMtMy4yMi0uMjMtLjM4LS4yLS44Ny4wNS0xLjIuMjUtLjMzLjY3LS40NSAxLjA0LS4yOCAxLjE1LjQ1IDIuMjcuNjkgMy41My42OXMyLjM4LS4yNCAzLjUzLS42OWMzOS0uMDggMS4yOS4xIDEuMDQuMjgtLjI1LjMzLS4yOC44Mi0uMDUgMS4yLTEuNDIgMi4wMi0zLjYzIDMuMjItNi4xMyAzLjIyeiIvPjwvc3ZnPg=='"
+                    />
+                  </div>
+                  <div class="upload-controls">
+                    <button
+                      type="button"
+                      class="btn btn-outline"
+                      id="changePhotoBtn"
+                    >
+                      Change Photo
+                    </button>
+                    <p class="hint">JPG, GIF or PNG. Max size 2MB</p>
+                    <input
+                      type="file"
+                      id="profile-picture"
+                      accept="image/*"
+                      style="display: none"
+                    />
+                  </div>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="fullName">Full Name</label>
+                <input type="text" id="fullName" class="form-control" />
+              </div>
+
+              <div class="form-group">
+                <label for="email">Email Address</label>
+                <input type="email" id="email" class="form-control" />
+                <p class="hint">We'll use this email to contact you</p>
+              </div>
+
+              <div class="form-group">
+                <label for="phone">Phone Number</label>
+                <input type="tel" id="phone" class="form-control" />
+              </div>
+
+              <div class="form-group">
+                <label for="bio">Bio</label>
+                <textarea
+                  id="bio"
+                  class="form-control"
+                  rows="4"
+                  placeholder="Tell us about yourself..."
+                ></textarea>
+              </div>
+
+              <div class="form-actions">
+                <button type="button" class="btn btn-secondary">Cancel</button>
+                <button type="submit" class="btn btn-primary">
+                  Save Changes
+                </button>
+              </div>
+            </form>
+          </div>
+
+          <!-- Notifications Section -->
+          <div class="settings-section" id="notifications-section">
+            <h1>Notification Preferences</h1>
+            <p class="section-description">
+              Choose how you receive notifications
+            </p>
+
+            <div class="notification-settings">
+              <div class="setting-item">
+                <div class="setting-info">
+                  <h3>Email Notifications</h3>
+                  <p>
+                    Receive updates about your bookings and account via email
+                  </p>
+                </div>
+                <label class="switch">
+                  <input type="checkbox" checked />
+                  <span class="slider"></span>
+                </label>
+              </div>
+
+              <div class="setting-item">
+                <div class="setting-info">
+                  <h3>Push Notifications</h3>
+                  <p>Get instant updates on your device</p>
+                </div>
+                <label class="switch">
+                  <input type="checkbox" checked />
+                  <span class="slider"></span>
+                </label>
+              </div>
+
+              <div class="setting-item">
+                <div class="setting-info">
+                  <h3>Marketing Emails</h3>
+                  <p>Receive special offers and travel deals</p>
+                </div>
+                <label class="switch">
+                  <input type="checkbox" checked />
+                  <span class="slider"></span>
+                </label>
+              </div>
+            </div>
+          </div>
+
+          <!-- Privacy Section -->
+          <div class="settings-section" id="privacy-section">
+            <h1>Privacy & Security</h1>
+            <p class="section-description">
+              Manage your privacy and security settings
+            </p>
+
+            <div class="privacy-settings">
+              <div class="setting-item">
+                <div class="setting-info">
+                  <h3>Two-Factor Authentication</h3>
+                  <p>Add an extra layer of security to your account</p>
+                </div>
+                <button class="btn btn-outline">Enable 2FA</button>
+              </div>
+
+              <div class="setting-item">
+                <div class="setting-info">
+                  <h3>Change Password</h3>
+                  <p>Update your account password</p>
+                </div>
+                <button class="btn btn-outline">Change Password</button>
+              </div>
+
+              <div class="setting-item">
+                <div class="setting-info">
+                  <h3>Download Your Data</h3>
+                  <p>Request a copy of your personal data</p>
+                </div>
+                <button class="btn btn-outline">Request Data</button>
+              </div>
+
+              <div class="setting-item danger">
+                <div class="setting-info">
+                  <h3>Delete Account</h3>
+                  <p>Permanently delete your account and all associated data</p>
+                </div>
+                <button class="btn btn-danger">Delete Account</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Payment Methods Section -->
+          <div class="settings-section" id="payment-section">
+            <div class="section-header">
+              <div>
+                <h1>Payment Methods</h1>
+                <p class="section-description">
+                  Manage your saved payment methods
+                </p>
+              </div>
+              <button class="btn btn-primary" id="addPaymentMethod">
+                <i class="fas fa-plus"></i> Add Payment Method
+              </button>
+            </div>
+
+            <div class="payment-methods">
+              <div class="payment-method">
+                <div class="payment-method-details">
+                  <div class="payment-icon">
+                    <i class="fab fa-cc-visa"></i>
+                  </div>
+                  <div>
+                    <h4>Visa ending in 4242</h4>
+                    <p>Expires 12/25</p>
+                  </div>
+                </div>
+                <button class="btn btn-text">
+                  <i class="fas fa-ellipsis-v"></i>
+                </button>
+              </div>
+
+              <div class="payment-method">
+                <div class="payment-method-details">
+                  <div class="payment-icon">
+                    <i class="fab fa-paypal"></i>
+                  </div>
+                  <div>
+                    <h4>PayPal</h4>
+                    <p>user@example.com</p>
+                  </div>
+                </div>
+                <button class="btn btn-text">
+                  <i class="fas fa-ellipsis-v"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Billing Section -->
+          <div class="settings-section" id="billing-section">
+            <h1>Billing History</h1>
+            <p class="section-description">
+              View and manage your billing history
+            </p>
+
+            <div class="billing-filters">
+              <div class="filter-group">
+                <label>Filter by:</label>
+                <select class="form-select">
+                  <option>All Transactions</option>
+                  <option>This Month</option>
+                  <option>Last 3 Months</option>
+                  <option>This Year</option>
+                </select>
+              </div>
+              <div class="search-box">
+                <i class="fas fa-search"></i>
+                <input type="text" placeholder="Search transactions..." />
+              </div>
+            </div>
+
+            <div class="billing-history">
+              <div class="billing-item">
+                <div>
+                  <h4>Premium Membership</h4>
+                  <p>Monthly Subscription</p>
+                </div>
+                <div class="billing-amount">
+                  <span class="amount">$9.99</span>
+                  <span class="date">Jul 15, 2023</span>
+                </div>
+                <button class="btn btn-text">
+                  <i class="fas fa-download"></i>
+                </button>
+              </div>
+
+              <div class="billing-item">
+                <div>
+                  <h4>Paris Vacation Package</h4>
+                  <p>Hotel & Flight Booking</p>
+                </div>
+                <div class="billing-amount">
+                  <span class="amount">$1,299.00</span>
+                  <span class="date">Jun 28, 2023</span>
+                </div>
+                <button class="btn btn-text">
+                  <i class="fas fa-download"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Preferences Section -->
+          <div class="settings-section" id="preferences-section">
+            <div class="section-header">
+              <div>
+                <h1>Preferences</h1>
+                <p class="section-description">
+                  Customize your Wanderlust experience
+                </p>
+              </div>
+            </div>
+
+            <div class="preferences-grid">
+              <div class="preference-card">
+                <div class="preference-content">
+                  <i class="fas fa-palette"></i>
+                  <div>
+                    <h3>Appearance</h3>
+                    <p>Customize how Wanderlust looks</p>
+                  </div>
+                </div>
+                <div class="theme-toggle">
+                  <button class="theme-option active" data-theme="light">
+                    <i class="fas fa-sun"></i>
+                  </button>
+                  <button class="theme-option" data-theme="dark">
+                    <i class="fas fa-moon"></i>
+                  </button>
+                  <button class="theme-option" data-theme="system">
+                    <i class="fas fa-desktop"></i>
+                  </button>
+                </div>
+              </div>
+
+              <div class="preference-card">
+                <div class="preference-content">
+                  <i class="fas fa-language"></i>
+                  <div>
+                    <h3>Language</h3>
+                    <p>Set your preferred language</p>
+                  </div>
+                </div>
+                <select class="form-select">
+                  <option>English (US)</option>
+                  <option>Español</option>
+                  <option>Français</option>
+                  <option>Deutsch</option>
+                </select>
+              </div>
+
+              <div class="preference-card">
+                <div class="preference-content">
+                  <i class="fas fa-money-bill-wave"></i>
+                  <div>
+                    <h3>Currency</h3>
+                    <p>Select your preferred currency</p>
+                  </div>
+                </div>
+                <select class="form-select">
+                  <option>US Dollar ($)</option>
+                  <option>Euro (€)</option>
+                  <option>British Pound (£)</option>
+                  <option>Japanese Yen (¥)</option>
+                </select>
+              </div>
+
+              <div class="preference-card">
+                <div class="preference-content">
+                  <i class="fas fa-globe"></i>
+                  <div>
+                    <h3>Time Zone</h3>
+                    <p>Set your local time zone</p>
+                  </div>
+                </div>
+                <select class="form-select">
+                  <option>(GMT-08:00) Pacific Time</option>
+                  <option>(GMT-07:00) Mountain Time</option>
+                  <option>(GMT-06:00) Central Time</option>
+                  <option>(GMT-05:00) Eastern Time</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="form-actions">
+              <button type="button" class="btn btn-outline">
+                Reset to Defaults
+              </button>
+              <button type="button" class="btn btn-primary">
+                Save Changes
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <!-- Payment Method Modal -->
+    <div class="modal-overlay" id="paymentModal" style="display: none;">
+      <div class="modal-container">
+        <div class="modal-header">
+          <h2>Add Payment Method</h2>
+          <button class="close-modal">&times;</button>
+        </div>
+        <div class="modal-body">
+          <form id="paymentForm" class="payment-form">
+            <div class="form-group">
+              <label>Card Number</label>
+              <div class="input-with-icon">
+                <i class="far fa-credit-card"></i>
+                <input type="text" placeholder="1234 5678 9012 3456" />
+              </div>
+              <div class="card-icons">
+                <i class="fab fa-cc-visa"></i>
+                <i class="fab fa-cc-mastercard"></i>
+                <i class="fab fa-cc-amex"></i>
+              </div>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label>Expiration Date</label>
+                <input type="text" placeholder="MM/YY" />
+              </div>
+              <div class="form-group">
+                <div class="label-row">
+                  <label>CVV</label>
+                  <i
+                    class="fas fa-question-circle"
+                    title="3-digit security code on the back of your card"
+                  ></i>
+                </div>
+                <div class="input-with-icon">
+                  <input type="text" placeholder="123" />
+                  <i class="fas fa-lock"></i>
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label>Name on Card</label>
+              <input type="text" placeholder="John Doe" />
+            </div>
+
+            <div class="form-actions">
+              <button type="button" class="btn btn-outline close-modal">
+                Cancel
+              </button>
+              <button type="submit" class="btn btn-primary">
+                <i class="fas fa-lock"></i> Add Payment Method
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+    <!-- End Payment Method Modal -->
+
+    <script src="js/navigation.js"></script>
+    <script>
+      // Section switching functionality
+      function switchSection(sectionId) {
+        // Hide all sections
+        document.querySelectorAll(".settings-section").forEach((section) => {
+          section.classList.remove("active");
+        });
+
+        // Remove active class from all nav items
+        document.querySelectorAll(".nav-item").forEach((item) => {
+          item.classList.remove("active");
+        });
+
+        try {
+          // Show the selected section
+          const section = document.getElementById(sectionId + "-section");
+          if (section) {
+            section.classList.add("active");
+          }
+
+          // Add active class to clicked nav item
+          const navItem = document.querySelector(
+            `.nav-item[data-section="${sectionId}"]`
+          );
+          if (navItem) {
+            navItem.classList.add("active");
+          }
+        } catch (e) {
+          console.error("Error switching section:", e);
+        }
+      }
+
+      // Modal functionality
+      document.addEventListener("DOMContentLoaded", function () {
+        const modal = document.getElementById("paymentModal");
+        const openModalBtn = document.getElementById("addPaymentMethod");
+        const closeModalBtns = document.querySelectorAll(".close-modal");
+
+        // Show first section by default
+        const firstSection = document.querySelector(".settings-section");
+        if (firstSection) {
+          document
+            .querySelectorAll(".settings-section")
+            .forEach((section, index) => {
+              section.classList.toggle("active", index === 0);
+            });
+        }
+
+        function openModal() {
+          modal.classList.add('active');
+          document.body.style.overflow = "hidden";
+        }
+
+        function closeModal() {
+          modal.classList.remove('active');
+          document.body.style.overflow = "auto";
+        }
+
+        if (openModalBtn) {
+          openModalBtn.addEventListener("click", (e) => {
+            e.preventDefault();
+            openModal();
+          });
+        }
+
+        closeModalBtns.forEach((btn) => {
+          btn.addEventListener("click", (e) => {
+            e.preventDefault();
+            closeModal();
+          });
+        });
+
+        // Close modal when clicking outside the modal content
+        window.addEventListener("click", (e) => {
+          if (e.target === modal) {
+            closeModal();
+          }
+        });
+      });
+    </script>
+  </body>
+</html>

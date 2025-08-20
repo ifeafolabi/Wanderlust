@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Trips - Wanderlust</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/shared.css">
+    <link rel="stylesheet" href="css/navigation.css">
+    <link rel="stylesheet" href="css/trips.css">
+</head>
+<body>
+    <header class="navbar">
+        <div class="container">
+            <!-- Navigation will be inserted here by navigation.js -->
+        </div>
+    </header>
+
+    <main class="container">
+        <div class="trips-container">
+            <h1>My Trips</h1>
+            
+            <div class="tabs">
+                <button class="tab-btn active" data-tab="upcoming">Upcoming</button>
+                <button class="tab-btn" data-tab="past">Past Trips</button>
+                <button class="tab-btn" data-tab="saved">Saved</button>
+            </div>
+
+            <div class="tab-content active" id="upcoming-trips">
+                <h2>Upcoming Adventures</h2>
+                <div class="trip-cards">
+                    <!-- Trip Card 1 -->
+                    <div class="trip-card">
+                        <div class="trip-image" style="background-image: url('https://images.unsplash.com/photo-1502602898657-3e91760cbb34?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8cGFyaXMlMjBmcmFuY2V8ZW58MHx8MHx8fDA%3D')">
+                            <span class="trip-status">Confirmed</span>
+                        </div>
+                        <div class="trip-details">
+                            <div class="trip-header">
+                                <h3>Paris, France</h3>
+                                <span class="trip-price">$1,200</span>
+                            </div>
+                            <div class="trip-date">
+                                <i class="far fa-calendar-alt"></i>
+                                <span>Jun 15 - Jun 25, 2024</span>
+                            </div>
+                            <div class="trip-info">
+                                <div class="info-item">
+                                    <i class="fas fa-hotel"></i>
+                                    <span>Le Méridien Etoile</span>
+                                </div>
+                                <div class="info-item">
+                                    <i class="fas fa-users"></i>
+                                    <span>2 Adults</span>
+                                </div>
+                            </div>
+                            <div class="trip-actions">
+                                <button class="btn btn-outline">View Details</button>
+                                <button class="btn btn-primary">Check-in</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Trip Card 2 -->
+                    <div class="trip-card">
+                        <div class="trip-image" style="background-image: url('https://plus.unsplash.com/premium_photo-1677829177642-30def98b0963?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8YmFsaSUyMGluZG9uZXNpYXxlbnwwfHwwfHx8MA%3D%3D')">
+                            <span class="trip-status">Upcoming</span>
+                        </div>
+                        <div class="trip-details">
+                            <div class="trip-header">
+                                <h3>Bali, Indonesia</h3>
+                                <span class="trip-price">$2,500</span>
+                            </div>
+                            <div class="trip-date">
+                                <i class="far fa-calendar-alt"></i>
+                                <span>Aug 5 - Aug 20, 2024</span>
+                            </div>
+                            <div class="trip-info">
+                                <div class="info-item">
+                                    <i class="fas fa-hotel"></i>
+                                    <span>Komaneka at Bisma</span>
+                                </div>
+                                <div class="info-item">
+                                    <i class="fas fa-users"></i>
+                                    <span>2 Adults</span>
+                                </div>
+                            </div>
+                            <div class="trip-actions">
+                                <button class="btn btn-outline">View Details</button>
+                                <button class="btn btn-primary">Manage Booking</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="tab-content" id="past-trips">
+                <div class="trips-header">
+                    <h2>Past Adventures</h2>
+                    <div class="sort-options">
+                        <span>Sort by:</span>
+                        <select class="form-control">
+                            <option>Most Recent</option>
+                            <option>Oldest First</option>
+                            <option>Price: Low to High</option>
+                            <option>Price: High to Low</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="trip-cards">
+                    <!-- Past trips will be loaded here dynamically -->
+                        <div class="trip-image" style="background-image: url('https://source.unsplash.com/random/600x400?tokyo')">
+                            <span class="trip-status completed">Completed</span>
+                        </div>
+                        <div class="trip-details">
+                            <div class="trip-header">
+                                <h3>Tokyo, Japan</h3>
+                                <span class="trip-rating">
+                                    <i class="fas fa-star"></i>
+                                    <span>4.8</span>
+                                </span>
+                            </div>
+                            <div class="trip-date">
+                                <i class="far fa-calendar-alt"></i>
+                                <span>Mar 10 - Mar 20, 2023</span>
+                            </div>
+                            <div class="trip-actions">
+                                <button class="btn btn-outline">View Details</button>
+                                <button class="btn btn-primary">Book Again</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="tab-content" id="saved-trips">
+                <h2>Saved for Later</h2>
+                <div class="trip-cards">
+                    <!-- Saved Trip Card -->
+                    <div class="trip-card">
+                        <div class="trip-image" style="background-image: url('https://source.unsplash.com/random/600x400?santorini')">
+                            <button class="save-btn active">
+                                <i class="fas fa-heart"></i>
+                            </button>
+                        </div>
+                        <div class="trip-details">
+                            <div class="trip-header">
+                                <h3>Santorini, Greece</h3>
+                                <span class="trip-price">$1,800</span>
+                            </div>
+                            <p class="trip-description">Experience the stunning sunsets and white-washed buildings of this beautiful Greek island.</p>
+                            <div class="trip-actions">
+                                <button class="btn btn-outline">View Details</button>
+                                <button class="btn btn-primary">Book Now</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Saved Trips Tab -->
+            <div class="tab-content" id="saved-trips">
+                <div class="trips-header">
+                    <h2>Saved for Later</h2>
+                    <div class="sort-options">
+                        <span>Sort by:</span>
+                        <select class="form-control">
+                            <option>Recently Added</option>
+                            <option>Price: Low to High</option>
+                            <option>Price: High to Low</option>
+                            <option>Destination (A-Z)</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="trip-cards">
+                    <!-- Saved trips will be loaded here dynamically -->
+                </div>
+                
+                <div class="empty-state" id="empty-saved" style="display: none;">
+                    <i class="far fa-heart"></i>
+                    <h3>No saved trips yet</h3>
+                    <p>Find amazing destinations and click the heart icon to save them for later.</p>
+                    <a href="destinations.html" class="btn btn-primary">Explore Destinations</a>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="js/navigation.js"></script>
+    <script src="js/trips.js"></script>
+</body>
+</html>

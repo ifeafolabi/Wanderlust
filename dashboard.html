@@ -12,6 +12,8 @@
       href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap"
       rel="stylesheet"
     />
+    <link rel="stylesheet" href="css/shared.css" />
+    <link rel="stylesheet" href="css/navigation.css" />
     <style>
       :root {
         --primary: #4f46e5;
@@ -47,62 +49,7 @@
         padding: 0 1.5rem;
       }
 
-      /* Navigation */
-      .navbar {
-        background: white;
-        box-shadow: var(--shadow-sm);
-        padding: 1rem 0;
-        position: fixed;
-        width: 100%;
-        z-index: 1000;
-      }
-
-      .nav-container {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-      }
-
-      .logo {
-        font-size: 1.5rem;
-        font-weight: 700;
-        color: var(--primary);
-        text-decoration: none;
-        display: flex;
-        align-items: center;
-        gap: 0.5rem;
-      }
-
-      .nav-buttons {
-        display: flex;
-        gap: 1rem;
-      }
-
-      .btn {
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        padding: 0.75rem 1.5rem;
-        font-weight: 600;
-        text-align: center;
-        text-decoration: none;
-        border-radius: var(--rounded);
-        cursor: pointer;
-        transition: all 0.2s;
-        border: none;
-        font-family: inherit;
-      }
-
-      .btn-primary {
-        background: var(--primary);
-        color: white;
-      }
-
-      .btn-outline {
-        background: transparent;
-        color: var(--primary);
-        border: 1px solid var(--primary);
-      }
+      /* Navigation styles moved to navigation.css */
 
       .btn:hover {
         transform: translateY(-2px);
@@ -120,8 +67,8 @@
         color: white;
         padding: 10rem 0 8rem;
         text-align: center;
-        position: relative;
         overflow: hidden;
+        margin-top: -15px;
       }
 
       .hero::before {
@@ -437,29 +384,15 @@
     </style>
   </head>
   <body>
-    <!-- Navigation -->
+    <!-- Navigation will be injected by navigation.js -->
     <nav class="navbar">
-      <div class="container">
-        <div class="nav-container">
-          <a href="index.html" class="logo">
-            <i class="fas fa-compass"></i>
-            Wanderlust
-          </a>
-          <div class="user-actions">
-            <button
-              id="userMenu"
-              class="btn btn-outline"
-              style="display: flex; align-items: center; gap: 0.5rem"
-            >
-              <i class="fas fa-user-circle"></i>
-              <span>My Account</span>
-            </button>
-          </div>
-        </div>
-      </div>
+      <div class="container"></div>
     </nav>
+    <!-- Add some spacing below the fixed navbar -->
+    <div style="height: 80px"></div>
 
     <!-- Hero Section -->
+    <!-- Scripts will be loaded at the bottom of the body -->
     <section class="hero">
       <div class="container">
         <h1>Discover Your Next Adventure</h1>
@@ -468,7 +401,9 @@
           vacation is just a few clicks away.
         </p>
         <div class="hero-buttons">
-          <a href="signup.html" class="btn btn-primary">Get Started</a>
+          <a href="destinations.html" class="btn btn-primary"
+            >Explore Destinations</a
+          >
           <a
             href="#features"
             class="btn btn-outline"
@@ -589,7 +524,7 @@
               <div
                 class="destination-image"
                 style="
-                  background-image: url('https://images.unsplash.com/photo-1512453979798-5ea266f8880c?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80');
+                  background-image: url('https://plus.unsplash.com/premium_photo-1661964149725-fbf14eabd38c?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8c2FudG9yaW5pJTIwZ3JlZWNlfGVufDB8fDB8fHww');
                 "
               >
                 <div class="destination-overlay">
@@ -661,5 +596,9 @@
         </div>
       </div>
     </footer>
+    <!-- Scripts -->
+    <script src="auth.js"></script>
+    <script src="js/navigation.js"></script>
+    <script src="script.js"></script>
   </body>
 </html>

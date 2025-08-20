@@ -1,55 +1,69 @@
-// DOM Elements
-const navbar = document.querySelector(".navbar");
-const hamburger = document.querySelector(".hamburger");
-const navLinks = document.querySelector(".nav-links");
-const tabButtons = document.querySelectorAll(".tab-btn");
-const testimonialSlides = document.querySelectorAll(".testimonial");
-const contactForm = document.querySelector(".contact-form");
-const newsletterForm = document.querySelector(".newsletter-form");
+// Wait for DOM to be fully loaded
+document.addEventListener('DOMContentLoaded', function() {
+    // DOM Elements with null checks
+    const navbar = document.querySelector(".navbar");
+    const hamburger = document.querySelector(".hamburger");
+    const navLinks = document.querySelector(".nav-links");
+    const tabButtons = document.querySelectorAll(".tab-btn");
+    const testimonialSlides = document.querySelectorAll(".testimonial");
+    const contactForm = document.querySelector(".contact-form");
+    const newsletterForm = document.querySelector(".newsletter-form");
 
-// Navbar scroll effect
-window.addEventListener("scroll", () => {
-  if (window.scrollY > 50) {
-    navbar.classList.add("scrolled");
-  } else {
-    navbar.classList.remove("scrolled");
-  }
-});
+    // Navbar scroll effect
+    if (navbar) {
+        window.addEventListener("scroll", () => {
+            if (window.scrollY > 50) {
+                navbar.classList.add("scrolled");
+            } else {
+                navbar.classList.remove("scrolled");
+            }
+        });
+    }
 
-// Mobile menu toggle
-hamburger.addEventListener("click", () => {
-  hamburger.classList.toggle("active");
-  navLinks.classList.toggle("active");
-});
+    // Mobile menu toggle - only if hamburger and navLinks exist
+    if (hamburger && navLinks) {
+        hamburger.addEventListener("click", (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            hamburger.classList.toggle("active");
+            navLinks.classList.toggle("active");
+        });
 
-// Close mobile menu when clicking on a nav link
-document.querySelectorAll(".nav-links a").forEach((link) => {
-  link.addEventListener("click", () => {
-    hamburger.classList.remove("active");
-    navLinks.classList.remove("active");
-  });
-});
+        // Close mobile menu when clicking on a nav link
+        const navLinksItems = document.querySelectorAll(".nav-links a");
+        navLinksItems.forEach((link) => {
+            link.addEventListener("click", () => {
+                if (hamburger && navLinks) {
+                    hamburger.classList.remove("active");
+                    navLinks.classList.remove("active");
+                }
+            });
+        });
+    }
 
-// Tab switching for search section
-tabButtons.forEach((button) => {
-  button.addEventListener("click", () => {
-    // Remove active class from all buttons
-    tabButtons.forEach((btn) => btn.classList.remove("active"));
-    // Add active class to clicked button
-    button.classList.add("active");
-    // Here you would typically show/hide different form content
-  });
-});
+    // Tab switching for search section
+    if (tabButtons.length > 0) {
+        tabButtons.forEach((button) => {
+            button.addEventListener("click", () => {
+                // Remove active class from all buttons
+                tabButtons.forEach((btn) => btn.classList.remove("active"));
+                // Add active class to clicked button
+                button.classList.add("active");
+                // Here you would typically show/hide different form content
+            });
+        });
+    }
 
-// Testimonial Slider Functionality
-document.addEventListener("DOMContentLoaded", function () {
-  const slider = document.querySelector(".testimonials-slider");
-  const slides = document.querySelectorAll(".testimonial-card");
-  const dots = document.querySelectorAll(".slider-dots .dot");
-  const prevBtn = document.querySelector(".slider-arrow.prev");
-  const nextBtn = document.querySelector(".slider-arrow.next");
+    // Testimonial Slider Functionality
+    const slider = document.querySelector(".testimonials-slider");
+    if (!slider) return;
+    
+    const slides = document.querySelectorAll(".testimonial-card");
+    const dots = document.querySelectorAll(".slider-dots .dot");
+    const prevBtn = document.querySelector(".slider-arrow.prev");
+    const nextBtn = document.querySelector(".slider-arrow.next");
 
-  if (!slider || !slides.length) return;
+    if (!slides.length) return;
 
   let currentSlide = 0;
   const totalSlides = slides.length;
@@ -149,8 +163,10 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   }
 
-  // Initialize first slide
-  setActiveSlide(0);
+      // Initialize first slide if slides exist
+    if (slides.length > 0) {
+      setActiveSlide(0);
+    }
 
   // Update active slide on scroll (for manual scrolling)
   let isScrolling = false;
